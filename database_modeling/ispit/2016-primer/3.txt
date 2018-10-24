@@ -1,0 +1,13 @@
+PK : *
+FK : ~
+
+kandidat ( id_kan*, ime, prezime, god_rodjenja, id_bm~ )
+politicka_partija ( id_pp*, ime )
+biracko_mesto ( id_bm*, lokacija, id_ops~ )
+kontrolor ( id_kont*, ime, prezime )
+opstina ( id_ops*, naziv )
+birac ( jmbg*, ime, prezime, adresa )
+kandiduje ( id_kan*~, id_pp~ )
+kontrolise ( id_kont*~, id_bm~ )
+bira_na ( jmbg*~, id_bm~, krug )
+kontrolisao_glasanje( jmbg*~, id_kont~, napomena )

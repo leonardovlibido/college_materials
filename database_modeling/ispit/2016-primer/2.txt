@@ -1,0 +1,17 @@
+klasterovani b-stablo indeks po poljima datum_projekcije, broj_posetilaca - posto se trazi i interval i tacna vrednost mogu lako da se izdvoje filmovi u intervalu datuma; a posto se trazi i poredjenje sa broj_posetilaca, onda bih stavio i to pod indeks
+
+(
+kako se to uopste klasteruje btw ako ima vise od jednog attr u indeksu? pp ovako?
+| datum | broj |
+| ----- | ---- |
+|    1  |  20  |
+|    1  |  50  |
+|    1  |  70  |
+|    2  |  32  |
+|    2  |  41  |
+|    3  |  20  |
+)
+
+hes indeks po polju zanr - posto ce se traziti jednakost sa onim sto korisnik unosi
+
+bitmap indeks po tipu filma (ako ne sme bitmap onda bolje bez indeksa)

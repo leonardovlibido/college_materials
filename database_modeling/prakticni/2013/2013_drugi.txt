@@ -1,0 +1,39 @@
+PK obelezen sa *
+FK obelezen sa ~
+
+S = {
+    posetilac (broj_karte*, ime, prezime),
+    novinari (broj_karte*~, ime_agencije, specijalnost),
+    gosti (broj_karte*~, svrha_dolaska),
+    ostali (broj_karte*~, cena_karte),
+    sala (id_sale*, naziv, oblik, ptt~),
+    grad (ptt*, naziv),
+    fotografija (id_fot*, opis, colortt, id_sale~, id_celine~),
+    clan_zirija (jmbg*, ime, prezime, ptt~),
+    umetnik (jmbg*, ime, prezime, ptt~, id_celine~),
+    tematska_celina (id_celine*, naziv),
+    posecuje (broj_karte*~, id_sale*~),
+    kupuje_kopiju (broj_karte*~, id_fot*~, cena),
+    prijavljuje (id_fot*~, jmbg~),
+    ocenjuje (id_fot~, jmbg*~, poeni)
+}
+
+I = {
+    novinari[broj_karte] ⊂ posetilac[broj_karte],
+    gosti[broj_karte] ⊂ posetilac[broj_karte],
+    ostali[broj_karte] ⊂ posetilac[broj_karte],
+    sala[ptt] ⊂ grad[ptt],
+    fotografija[id_sale] ⊂ sala[id_sale],
+    fotografija[id_celine] ⊂ tematska_celina[id_celine],
+    clan_zirija[ptt] ⊂ grad[ptt],
+    umetnik[ptt] ⊂ grad[ptt],
+    umetnik[id_celine] ⊂ tematska_celina[id_celine],
+    posecuje[broj_karte] ⊂ posetilac[broj_karte],
+    posecuje[id_sale] ⊂ sala[id_sale],
+    kupuje_kopiju[broj_karte] ⊂ posetilac[broj_karte],
+    kupuje_kopiju[id_fot] ⊂ fotografija[id_fot],
+    prijavljuje[id_fot] ⊂ fotografija[id_fot],
+    prijavljuje[jmbg] ⊂ umetnik[jmbg],
+    ocenjuje[id_fot] ⊂ fotografija[id_fot],
+    ocenjuje[jmbg] ⊂ clan_zirija[jmbg]
+}

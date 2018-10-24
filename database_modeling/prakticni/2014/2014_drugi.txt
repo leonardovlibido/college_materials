@@ -1,0 +1,38 @@
+PK obelezen sa *
+Fk obelezen sa ~
+
+S = {
+    Restoran(id*, naziv, addr, radno_vreme, min_cena, cena),
+    Prozivod(id*, naziv, sadrzaj),
+    Ima(id_restorana*~, id_proizvoda*~, cena),
+    Pice(id*~, kolicina, alkohol),
+    Hrana(id*~),
+    Kuhinja(naziv*, opis),
+    Pripada(id*~, naziv*~),
+    Korisnik(korisnicko_ime*, rang, datum_reg),
+    Zaposleni_u_dostavi(sifra*, ime_i_prezime),
+    Isporuka(id*, reon, vreme_polaska, odgovorni~),
+    Narudzbina(id*, datum, cena, adresa),
+    // na dijagramu nema narudzbina id, al mislim da mora da ima,
+    // inace jedan korisnik ne bi mogao da ima vise narudzbina istih stvari iz istog restorana jednog dana
+    Sadrzi(id_narudzbine*~, id_restorana*~, id_proizvoda*~, kolicina),
+    Ocena(id_narudzbine*~, kvalitet, cena, usluga),
+    Ide(id_narudzbine*~, id_isporuke*~, vreme_dostave)
+}
+
+
+I = {
+    Ima[id_restorana] C Restoran[id],
+    Ima[id_proizvoda] C Proizvod[id],
+    Pice[id] C Proizvod[id],
+    Hrana[id] C Proizvod[id],
+    Pripada[id] C Hrana[id],
+    Pripada[naziv] C Kuhinja[naziv],
+    Isporuka[odgovorni] C Zaposleni_u_dostavi[sifra],
+    Sadrzi[id_narudzbine] C Narudzbina[id],
+    Sadrzi[id_restorana] C Restoran[id],
+    Sadrzi[id_proizvoda] C Proizvod[id],
+    Ocena[id_narudzbine] C Narudzbina[id],
+    Ide[id_narudzbine] C Narudzbina[id],
+    Ide[id_isporuke] C Isporuka[id]
+}
